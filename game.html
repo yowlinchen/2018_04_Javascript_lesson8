@@ -26,14 +26,26 @@
         });
         ga.loadResources = function () {
             ga.loadSounds();
-            // ga.loadImages();
+            ga.loadImages();
         };
 
+        ga.loadImages = function () {
+            for (var name in ga.res.imgs) {
+                ga.loadImage(name, ga.res.imgs[name]);
+            }
+        };
+        ga.loadImage = function (name, src) {
+            var img = new Image();
+            img.src = src;
+            img.onload = function () {
+                ga.res.imgs[name] = img;
+            };
+        };
         ga.loadSounds = function () {
             for (var name in ga.res.sounds) {
                 ga.loadSound(name, ga.res.sounds[name]);
             }
-        }
+        };
 
         // var snare;
         ga.loadSound = function (name, src) {
@@ -49,7 +61,7 @@
                 });
             };
             req.send();
-        }
+        };
 
         ga.playSound = function (buffer, time) {
             var source = ga.audio.createBufferSource();
@@ -60,7 +72,7 @@
             // source.connect(gain);
             source.connect(ga.audio.destination); // next box
             source.start(time); // play
-        }
+        };
     </script>
 </head>
 
