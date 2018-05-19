@@ -50,11 +50,16 @@
             source.connect(audio.destination); // next box
             source.start(); // play
         }
+
+        function playMusic() {
+            var currentTime = audio.currentTime;
+            console.log(currentTime);
+        }
     </script>
 </head>
 
 <body>
-    <button onclick="playSound(sounds.kick);">Play</button>
+    <button onclick="playMusic()">Play</button>
 </body>
 
 </html>
