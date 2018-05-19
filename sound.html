@@ -26,14 +26,17 @@
                 // Transfer ArrayBuffer to AudioBuffer and save it
                 audio.decodeAudioData(req.response, function (buffer) {
                     snare = buffer;
-                    console.log(snare);
+                    // console.log(snare);
                 });
             };
             req.send();
         }
 
         function playSound() {
-
+            var source = audio.createBufferSource();
+            source.buffer = snare; // where source is coming from
+            source.connect(audio.destination); // next box
+            source.start(); // play
         }
     </script>
 </head>
