@@ -6,7 +6,16 @@
     <script>
         // Put all the global variables in ga
         var ga = {
-
+            res: {
+                sound: {
+                    bullet: "./sound-bullet.mp3",
+                    explosion: "./sound-explosion.mp3"
+                },
+                imgs: {
+                    plane: "./plane.png",
+                    explosion: "./particle-explosion.png"
+                }
+            }
         };
         window.addEventListener("load", function () {
 
@@ -48,6 +57,9 @@
 </head>
 
 <body>
+    <div id="loading">Loading</div>
+    <div id="menu" style="display:none">Menu</div>
+    <div id="game" style="display:none">Game</div>
 </body>
 
 </html>
