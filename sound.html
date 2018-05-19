@@ -4,14 +4,34 @@
 <head>
     <title>Sound Effects</title>
     <script>
-        document.addEventListener("click", function () {
-            audio.play();
+        // Web Audio API
+        var audio;
+        window.addEventListener("load", function () {
+            // Audio context takes "Audio Buffer" and through some processes 
+            // Get the outputs
+            // AudioBuffer takes the input file and will encode it
+            audio = new AudioContext();
+            // load music file and encode it as audio buffer
+            loadSound();
         });
+
+        function loadSound() {
+            var req = new XMLHttpRequest();
+            req.open("get", "./snare.wav");
+            req.onload = function () {
+                alert(req.responseText);
+            };
+            req.send();
+        }
+
+        function playSound() {
+
+        }
     </script>
 </head>
 
 <body>
-    <audio id="audio" controls src="./snare.wav"></audio>
+    <button onclick="playSound();">Play</button>
 </body>
 
 </html>
