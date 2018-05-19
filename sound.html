@@ -4,11 +4,14 @@
 <head>
     <title>Sound Effects</title>
     <script>
+        document.addEventListener("click", function () {
+            audio.play();
+        });
     </script>
 </head>
 
 <body>
-    <audio controls src="./snare.wav"></audio>
+    <audio id="audio" controls src="./snare.wav"></audio>
 </body>
 
 </html>
