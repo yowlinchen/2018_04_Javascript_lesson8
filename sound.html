@@ -47,7 +47,12 @@
         function playSound(buffer, time) {
             var source = audio.createBufferSource();
             source.buffer = buffer; // where source is coming from
-            source.connect(audio.destination); // next box
+            // Create gainnode
+            var gain = audio.createGain();
+            gain.gain.value = Math.random();
+            // connect & play
+            source.connect(gain);
+            gain.connect(audio.destination); // next box
             source.start(time); // play
         }
 
