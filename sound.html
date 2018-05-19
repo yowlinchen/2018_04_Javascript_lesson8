@@ -15,12 +15,19 @@
             loadSound();
         });
 
+        var snare;
+
         function loadSound() {
             var req = new XMLHttpRequest();
             req.responseType = "arraybuffer";
             req.open("get", "./snare.wav");
             req.onload = function () {
-                console.log(req.response);
+                // console.log(req.response);
+                // Transfer ArrayBuffer to AudioBuffer and save it
+                audio.decodeAudioData(req.response, function (buffer) {
+                    snare = buffer;
+                    console.log(snare);
+                });
             };
             req.send();
         }
