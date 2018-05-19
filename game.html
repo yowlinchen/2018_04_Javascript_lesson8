@@ -27,6 +27,8 @@
         ga.loadResources = function () {
             ga.loadSounds();
             ga.loadImages();
+            // we need to make sure all the resources are successfully loaded.  Only then we can proceed
+            console.log("Start");
         };
 
         ga.loadImages = function () {
@@ -39,6 +41,7 @@
             img.src = src;
             img.onload = function () {
                 ga.res.imgs[name] = img;
+                console.log("Image", name); // THis is the place where images are succesfully loaded
             };
         };
         ga.loadSounds = function () {
@@ -58,6 +61,7 @@
                 ga.audio.decodeAudioData(req.response, function (buffer) {
                     ga.res.sounds[name] = buffer;
                     // console.log(snare);
+                    console.log("Sound", name);
                 });
             };
             req.send();
