@@ -44,9 +44,9 @@
             req.send();
         }
 
-        function playSound() {
+        function playSound(buffer) {
             var source = audio.createBufferSource();
-            source.buffer = snare; // where source is coming from
+            source.buffer = buffer; // where source is coming from
             source.connect(audio.destination); // next box
             source.start(); // play
         }
@@ -54,7 +54,7 @@
 </head>
 
 <body>
-    <button onclick="playSound();">Play</button>
+    <button onclick="playSound(sounds.snare);">Play</button>
 </body>
 
 </html>
