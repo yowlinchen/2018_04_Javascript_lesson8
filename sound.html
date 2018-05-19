@@ -52,9 +52,20 @@
         }
 
         function playMusic() {
-            playSound(sounds.snare, 10)
-            // var currentTime = audio.currentTime;
-            // console.log(currentTime);
+            var currentTime = audio.currentTime;
+            var startTime = currentTime;
+            var unitTime = 0.2;
+            // 1, 5 kick
+            playSound(sounds.kick, startTime + 2 * unitTime);
+            playSound(sounds.kick, startTime + 4 * unitTime);
+            // 3, 7 snare
+            playSound(sounds.snare, startTime + 2 * unitTime);
+            playSound(sounds.snare, startTime + 6 * unitTime);
+            // 1~8 hihab
+            for (var i = 0; i < 7; i++) {
+                playSound(sounds.hihat, startTime + i * unitTime);
+            }
+
         }
     </script>
 </head>
