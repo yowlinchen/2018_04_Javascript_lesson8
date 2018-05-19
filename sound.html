@@ -6,14 +6,26 @@
     <script>
         // Web Audio API
         var audio;
+        var sounds = {
+            snare: "./snare.wav",
+            kick: "./kick.wav",
+            hihat: "./hihat.wav"
+        };
         window.addEventListener("load", function () {
             // Audio context takes "Audio Buffer" and through some processes 
             // Get the outputs
             // AudioBuffer takes the input file and will encode it
             audio = new AudioContext();
             // load music file and encode it as audio buffer
-            loadSound();
+            loadSounds();
         });
+
+        function loadSounds() {
+            // find the member of each object
+            for (var name in sounds) {
+                console.log(name, sounds[name]);
+            }
+        }
 
         var snare;
 
