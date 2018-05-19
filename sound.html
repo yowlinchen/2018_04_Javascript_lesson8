@@ -44,16 +44,17 @@
             req.send();
         }
 
-        function playSound(buffer) {
+        function playSound(buffer, time) {
             var source = audio.createBufferSource();
             source.buffer = buffer; // where source is coming from
             source.connect(audio.destination); // next box
-            source.start(); // play
+            source.start(time); // play
         }
 
         function playMusic() {
-            var currentTime = audio.currentTime;
-            console.log(currentTime);
+            playSound(sounds.snare, 10)
+            // var currentTime = audio.currentTime;
+            // console.log(currentTime);
         }
     </script>
 </head>
