@@ -21,23 +21,23 @@
         });
 
         function loadSounds() {
+            console.log(sounds);
             // find the member of each object
             for (var name in sounds) {
-                console.log(name, sounds[name]);
+                loadSound(name, sounds[name]);
             }
         }
 
-        var snare;
-
-        function loadSound() {
+        // var snare;
+        function loadSound(name, src) {
             var req = new XMLHttpRequest();
             req.responseType = "arraybuffer";
-            req.open("get", "./snare.wav");
+            req.open("get", src);
             req.onload = function () {
                 // console.log(req.response);
                 // Transfer ArrayBuffer to AudioBuffer and save it
                 audio.decodeAudioData(req.response, function (buffer) {
-                    snare = buffer;
+                    sounds[name] = buffer;
                     // console.log(snare);
                 });
             };
