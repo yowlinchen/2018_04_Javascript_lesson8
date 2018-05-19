@@ -6,6 +6,7 @@
     <script>
         // Put all the global variables in ga
         var ga = {
+            audio: null,
             res: {
                 sound: {
                     bullet: "./sound-bullet.mp3",
@@ -18,12 +19,19 @@
             }
         };
         window.addEventListener("load", function () {
-
+            // init sound env
+            ga.audio = new AudioContext();
+            // load resources
+            ga.loadResources();
         });
+        ga.loadResources = function () {
+            ga.loadSounds();
+            // ga.loadImages();
+        };
 
         ga.loadSounds = function () {
-            for (var name in sounds) {
-                loadSound(name, sounds[name]);
+            for (var name in ga.res.sounds) {
+                ga.loadSound(name, ga.res.sounds[name]);
             }
         }
 
@@ -35,8 +43,8 @@
             req.onload = function () {
                 // console.log(req.response);
                 // Transfer ArrayBuffer to AudioBuffer and save it
-                audio.decodeAudioData(req.response, function (buffer) {
-                    sounds[name] = buffer;
+                ga.audio.decodeAudioData(req.response, function (buffer) {
+                    ga.res.sounds[name] = buffer;
                     // console.log(snare);
                 });
             };
@@ -44,13 +52,13 @@
         }
 
         ga.playSound = function (buffer, time) {
-            var source = audio.createBufferSource();
+            var source = ga.audio.createBufferSource();
             source.buffer = buffer; // where source is coming from
             // Create gainnode
             // var gain = audio.createGain();
             // connect & play
             // source.connect(gain);
-            source.connect(audio.destination); // next box
+            source.connect(ga.audio.destination); // next box
             source.start(time); // play
         }
     </script>
